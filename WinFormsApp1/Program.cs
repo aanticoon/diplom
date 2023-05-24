@@ -1,3 +1,10 @@
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using System;
+using WinFormsApp1.Database;
+using WinFormsApp1.Forms;
+using WinFormsApp1.Logic;
+
 namespace WinFormsApp1
 {
 	internal static class Program
@@ -8,10 +15,21 @@ namespace WinFormsApp1
 		[STAThread]
 		static void Main()
 		{
-			// To customize application configuration such as set high DPI settings or default font,
-			// see https://aka.ms/applicationconfiguration.
-			ApplicationConfiguration.Initialize();
-			Application.Run(new Form1());
+            var host = CreateHostBuilder().Build();
+            ServiceProvider = host.Services;
+
+            Application.Run(ServiceProvider.GetRequiredService<AuthorizationForm>());
 		}
-	}
+        public static IServiceProvider ServiceProvider { get; private set; }
+        static IHostBuilder CreateHostBuilder()
+        {
+            return Host.CreateDefaultBuilder()
+                .ConfigureServices((context, services) => {
+                    services.AddTransient<IAuthService, AuthService>();
+                    services.AddTransient<IRepository, Repository>();
+                    services.AddTransient<AuthorizationForm>();
+                    services.AddTransient<MainForm>();
+                });
+        }
+    }
 }
