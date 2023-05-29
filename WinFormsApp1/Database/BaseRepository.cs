@@ -11,7 +11,7 @@ namespace WinFormsApp1.Database
 {
     public class BaseRepository
     {
-        private readonly string _connectionString = "Data Source=(localdb)\\LocalDB;Initial Catalog=dbName;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        private readonly string _connectionString = "Server=DESKTOP-VG9G9E1;database=Journal;Integrated Security=True;";
 
         protected BaseRepository()
         {

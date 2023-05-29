@@ -13,21 +13,17 @@ namespace WinFormsApp1.Database
 		{
 			using (var conn = Connection)
 			{
-                SqlConnection connection = new SqlConnection("server=DESKTOP-VG9G9E1;database=Journal;Integrated Security=True;");
-                connection.Open();
-                SqlCommand command = connection.CreateCommand();
                 conn.Open();
-				var user = conn.QueryFirst<AuthModel>(
+				var user = conn.QueryFirstOrDefault<AuthModel>(
 @$"select
-	Fname {nameof(AuthModel.FName)},
+	FName {nameof(AuthModel.FName)},
 	Patronymic {nameof(AuthModel.Patronymic)}
-from users
-where login = @login and password = @password",
-new { login, password });
+	from users
+	where login = @login and password = @password",
+	new { login, password });
 
-				return $"{user.FName} {user.Patronymic}";
-			}
-
+                return user?.FName == null || user?.Patronymic == null ?  null : $"{user.FName} {user.Patronymic}";
+            }
 		}
 	}
 }

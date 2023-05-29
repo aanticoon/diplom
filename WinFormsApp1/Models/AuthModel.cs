@@ -8,8 +8,8 @@ namespace WinFormsApp1.Models
 {
 	public class AuthModel
 	{
-		public string Name { get; set; }
+		public string FName { get; set; }
 
-		public string Surname { get; set; }
+		public string Patronymic { get; set; }
 	}
 }

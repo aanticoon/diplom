@@ -16,8 +16,13 @@ namespace WinFormsApp1.Logic
 		}
 
 		public string AuthorizeUser(string login, string password)
-		{
-			return _repository.AuthorizeUser(login, password);
-		}
-	}
+        {
+            var result = _repository.AuthorizeUser(login,password);
+            if (string.IsNullOrEmpty(result))
+            {
+                throw new Exception("Неправильные данные авторизации");
+            }
+            return result;
+        }
+    }
 }
