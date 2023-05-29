@@ -1,5 +1,9 @@
 ﻿using Dapper;
 using WinFormsApp1.Models;
+using System.Linq;
+using System.Data;
+using System.Collections.Generic;
+using System.Data.SqlClient;
 
 namespace WinFormsApp1.Database
 {
@@ -7,26 +11,23 @@ namespace WinFormsApp1.Database
 	{
 		public string AuthorizeUser(string login, string password)
 		{
-//			using (var conn = Connection)
-//			{
-//				conn.Open();
-//				var authorizedUser = conn.QueryFirst<AuthModel>(
-//@$"select
-//	name {nameof(AuthModel.Name)},
-//	surname {nameof(AuthModel.Surname)},
-//from qwe
-//where login = @login and password = @password",
-//new { login, password });
-
-//				return $"{authorizedUser.Name} {authorizedUser.Surname}";
-//			}
-
-			var random = new Random();
-			if (random.NextInt64() % 2 != 0)
+			using (var conn = Connection)
 			{
-				throw new Exception("Введены неверные логин/пароль!");
+                SqlConnection connection = new SqlConnection("server=DESKTOP-VG9G9E1;database=Journal;Integrated Security=True;");
+                connection.Open();
+                SqlCommand command = connection.CreateCommand();
+                conn.Open();
+				var user = conn.QueryFirst<AuthModel>(
+@$"select
+	Fname {nameof(AuthModel.FName)},
+	Patronymic {nameof(AuthModel.Patronymic)}
+from users
+where login = @login and password = @password",
+new { login, password });
+
+				return $"{user.FName} {user.Patronymic}";
 			}
-			return "Василий";
+
 		}
 	}
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using System.Data.SqlClient;
 using WinFormsApp1.Logic;
 
 namespace WinFormsApp1.Forms
