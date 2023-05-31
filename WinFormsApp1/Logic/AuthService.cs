@@ -30,9 +30,9 @@ namespace WinFormsApp1.Logic
             return _repository.GetStudentCards();
         }
 
-        public int SaveStudentCard(StudentCardModel student_сard)
+        public int SaveStudentCard(StudentCardModel StudentCards)
         {
-            return _repository.SaveStudentCard(student_сard);
+            return _repository.SaveStudentCard(StudentCards);
         }
 
         public void DeleteStudentCard(int studentCardId)

@@ -38,11 +38,11 @@ namespace WinFormsApp1.Forms
 
         private void button2_Click(object sender, EventArgs e)
         {
-            StudentCardForm second = new StudentCardForm();
+            var StudentCardForm = Program.ServiceProvider.GetRequiredService<IAuthService>();
+            StudentCardForm second = new StudentCardForm(StudentCardForm);
             SetActiveButton(button2);
             SwitchToForm(second);
         }
-
         private void OpenAuthForm()
         {
             var authService = Program.ServiceProvider.GetRequiredService<IAuthService>();

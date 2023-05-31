@@ -29,7 +29,6 @@ namespace WinFormsApp1.Forms
 
             InitializeTableData();
         }
-
         private void studentsTable_UserAddedRow(object sender, DataGridViewRowEventArgs e)
         {
             LastNewRowIndex = e.Row.Index - 1;
