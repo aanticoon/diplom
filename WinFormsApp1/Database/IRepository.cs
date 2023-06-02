@@ -15,6 +15,8 @@ namespace WinFormsApp1.Database
         int SaveStudentCard(StudentCardModel student_сard);
 
         void DeleteStudentCard(int studentCardId);
+
+        void UpdateStudentCard(StudentCardModel student_card);
     }
 
 }

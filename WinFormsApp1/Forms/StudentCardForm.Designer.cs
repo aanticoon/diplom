@@ -30,6 +30,8 @@
         {
             label1 = new Label();
             studentsTable = new DataGridView();
+            SaveButton = new Button();
+            CancelButton = new Button();
             ((System.ComponentModel.ISupportInitialize)studentsTable).BeginInit();
             SuspendLayout();
             // 
@@ -53,10 +55,34 @@
             studentsTable.Name = "studentsTable";
             studentsTable.RowHeadersWidth = 51;
             studentsTable.RowTemplate.Height = 29;
-            studentsTable.Size = new Size(1029, 490);
+            studentsTable.Size = new Size(1029, 447);
             studentsTable.TabIndex = 1;
+            studentsTable.RowLeave += studentsTable_RowLeave;
             studentsTable.UserAddedRow += studentsTable_UserAddedRow;
             studentsTable.UserDeletedRow += studentsTable_UserDeletedRow;
+            studentsTable.UserDeletingRow += studentsTable_UserDeletingRow;
+            // 
+            // SaveButton
+            // 
+            SaveButton.ForeColor = Color.Black;
+            SaveButton.Location = new Point(12, 459);
+            SaveButton.Name = "SaveButton";
+            SaveButton.Size = new Size(229, 23);
+            SaveButton.TabIndex = 2;
+            SaveButton.Text = "Сохранить изменения";
+            SaveButton.UseVisualStyleBackColor = true;
+            //SaveButton.Click += SaveButton_Click;
+            // 
+            // CancelButton
+            // 
+            CancelButton.ForeColor = Color.Black;
+            CancelButton.Location = new Point(270, 459);
+            CancelButton.Name = "CancelButton";
+            CancelButton.Size = new Size(218, 23);
+            CancelButton.TabIndex = 3;
+            CancelButton.Text = "Отменить изменения";
+            CancelButton.UseVisualStyleBackColor = true;
+            /*CancelButton.Click += CancelButton_Click;*/
             // 
             // StudentCardForm
             // 
@@ -64,6 +90,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1183, 508);
+            Controls.Add(CancelButton);
+            Controls.Add(SaveButton);
             Controls.Add(studentsTable);
             Controls.Add(label1);
             ForeColor = Color.LightGoldenrodYellow;
@@ -79,5 +107,7 @@
 
         private Label label1;
         private DataGridView studentsTable;
+        private Button SaveButton;
+        private Button CancelButton;
     }
 }

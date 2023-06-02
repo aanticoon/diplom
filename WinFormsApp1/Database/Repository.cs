@@ -44,13 +44,15 @@ from StudentCards");
             {
                 conn.Open();
                 var query = $@"
-insert into StudentCards (Group_id, Sname, Fname, Lname, BDate, gender, Addres, Phone, Email, hometown, residence, Character)
-values (@Fname, @Sname, @Lname, @BDate, @gender, @Addres, @Phone, @Email, @hometown, @residence, @Character);
+insert into StudentCards (_id, Group_id, Fname, Sname, Lname, BDate, gender, Addres, Phone, Email, hometown, residence, Character)
+values (@id, @Group, @Fname, @Sname, @Lname, @BDate, @gender, @Addres, @Phone, @Email, @hometown, @residence, @Character);
 SELECT CAST(SCOPE_IDENTITY() as int)";
 
                 return conn.QueryFirst<int>(query,
                     new
                     {
+                        id = StudentCards.id,
+                        Group = StudentCards.Group_id,
                         Fname = StudentCards.Fname,
                         Sname = StudentCards.Sname,
                         Lname = StudentCards.Lname,
@@ -78,6 +80,33 @@ where Id = @id";
                 conn.Execute(query, new { id = studentCardId });
             }
 
+        }
+        public void UpdateStudentCard(StudentCardModel StudentCards)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                var query = $@"
+update StudentCards
+set Name = @id, @Fname, @Sname, @Lname, @BDate, @gender, @Addres, @Phone, @Email, @hometown, @residence, @Character
+where Id = @id";
+
+                conn.Execute(query, new
+                {
+                        id = StudentCards.id,
+                        Fname = StudentCards.Fname,
+                        Sname = StudentCards.Sname,
+                        Lname = StudentCards.Lname,
+                        BDate = StudentCards.BDate,
+                        gender = StudentCards.gender,
+                        Addres = StudentCards.Addres,
+                        Phone = StudentCards.Phone,
+                        Email = StudentCards.Email,
+                        hometown = StudentCards.hometown,
+                        residence = StudentCards.residence,
+                        Character = StudentCards.Character
+                });
+            }
         }
     }
 }

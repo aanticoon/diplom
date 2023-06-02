@@ -13,5 +13,6 @@ namespace WinFormsApp1.Logic
         List<StudentCardModel> GetStudentCards();
         int SaveStudentCard(StudentCardModel studentCard);
         void DeleteStudentCard(int studentCardId);
+        void UpdateStudentCard(StudentCardModel studentCard);
     }
 }

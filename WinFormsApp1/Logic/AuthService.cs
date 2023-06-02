@@ -39,6 +39,10 @@ namespace WinFormsApp1.Logic
         {
             _repository.DeleteStudentCard(studentCardId);
         }
+        public void UpdateStudentCard(StudentCardModel StudentCards)
+        {
+            _repository.UpdateStudentCard(StudentCards);
+        }
     }
 }
 
